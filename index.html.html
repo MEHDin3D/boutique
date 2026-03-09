@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Créations Uniques – Lampes & Porte-clés</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #0d0d0d;
+      --off:     #141414;
+      --mid:     #1e1e1e;
+      --border:  #2a2a2a;
+      --muted:   #6b6b6b;
+      --light:   #c8c8c8;
+      --white:   #f5f5f3;
+      --gold:    #d4a843;
+      --gold2:   #b8892e;
+      --radius:  6px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── GRAIN OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,13,13,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      letter-spacing: 0.02em;
+      color: var(--white);
+    }
+    .logo em { color: var(--gold); font-style: italic; }
+
+    .header-right { display: flex; align-items: center; gap: 20px; }
+
+    .cart-trigger {
+      display: flex; align-items: center; gap: 9px;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--light);
+      padding: 8px 18px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      border-radius: var(--radius);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .cart-trigger:hover { border-color: var(--gold); color: var(--gold); }
+
+    .cart-badge {
+      display: none;
+      background: var(--gold);
+      color: var(--black);
+      border-radius: 99px;
+      padding: 1px 7px;
+      font-size: 0.72rem;
+      font-weight: 500;
+    }
+    .cart-badge.on { display: inline; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 100px 40px 80px;
+      max-width: 900px;
+      animation: fadeUp 0.9s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity:0; transform: translateY(28px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+
+    .hero-label {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+    .hero-label::before {
+      content: '';
+      display: block; width: 28px; height: 1px;
+      background: var(--gold);
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1.08;
+      font-weight: 400;
+      margin-bottom: 24px;
+      color: var(--white);
+    }
+    .hero h1 em { color: var(--gold); font-style: italic; }
+
+    .hero p {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 480px;
+      font-weight: 300;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 40px;
+    }
+
+    /* ── SHOP ── */
+    .shop {
+      padding: 70px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .shop-head {
+      display: flex; align-items: baseline; gap: 16px;
+      margin-bottom: 48px;
+    }
+    .shop-head h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+    }
+    .shop-head span {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    /* ── CATEGORIES ── */
+    .filter-tabs {
+      display: flex; gap: 10px;
+      margin-bottom: 44px;
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 7px 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      border-radius: 99px;
+      transition: all 0.2s;
+    }
+    .filter-tab:hover,
+    .filter-tab.active {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(212,168,67,0.07);
+    }
+
+    /* ── GRID ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--off);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.25s, transform 0.3s;
+      animation: fadeUp 0.6s ease both;
+    }
+    .card:nth-child(1) { animation-delay: 0.05s; }
+    .card:nth-child(2) { animation-delay: 0.12s; }
+    .card:nth-child(3) { animation-delay: 0.19s; }
+    .card:nth-child(4) { animation-delay: 0.26s; }
+    .card:hover { border-color: var(--gold); transform: translateY(-5px); }
+
+    .card-img {
+      aspect-ratio: 5/4;
+      overflow: hidden;
+      position: relative;
+      background: var(--mid);
+    }
+    .card-img img { width:100%; height:100%; object-fit: cover; transition: transform 0.5s; }
+    .card:hover .card-img img { transform: scale(1.04); }
+
+    .card-img-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 14px;
+      color: var(--border);
+    }
+    .card-img-placeholder svg { width: 48px; height: 48px; }
+    .card-img-placeholder span {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .card-tag {
+      position: absolute; top: 14px; left: 14px;
+      background: var(--black);
+      color: var(--gold);
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+    }
+
+    .card-body { padding: 22px; }
+    .card-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+      line-height: 1.25;
+    }
+    .card-desc {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 22px;
+      font-weight: 300;
+    }
+    .card-foot {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+    .card-price {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--gold);
+    }
+    .card-price sup { font-size: 0.7em; vertical-align: super; font-weight: 400; }
+
+    .card-add {
+      display: flex; align-items: center; gap: 7px;
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      padding: 9px 18px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .card-add:hover { background: var(--gold2); }
+    .card-add svg { width: 14px; height: 14px; }
+
+    /* ── OVERLAY ── */
+    .overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 200;
+      backdrop-filter: blur(6px);
+    }
+    .overlay.on { display: block; }
+
+    /* ── PRODUCT DETAIL PANEL ── */
+    .detail-panel {
+      position: fixed;
+      top: 0; right: -540px;
+      width: min(540px, 100vw);
+      height: 100vh;
+      background: var(--off);
+      border-left: 1px solid var(--border);
+      z-index: 300;
+      transition: right 0.38s cubic-bezier(0.25,0.46,0.45,0.94);
+      overflow-y: auto;
+      display: flex; flex-direction: column;
+    }
+    .detail-panel.on { right: 0; }
+
+    .detail-close {
+      position: absolute; top: 18px; right: 22px;
+      background: var(--mid); border: 1px solid var(--border);
+      color: var(--muted); width: 36px; height: 36px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .detail-close:hover { color: var(--white); border-color: var(--white); }
+
+    .detail-img {
+      aspect-ratio: 16/10;
+      background: var(--mid);
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .detail-img img { width: 100%; height: 100%; object-fit: cover; }
+    .detail-img-ph {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 12px; color: var(--muted); font-size: 0.75rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+    }
+
+    .detail-body { padding: 36px 34px; flex: 1; }
+    .detail-cat {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .detail-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.9rem;
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .detail-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 30px;
+    }
+    .detail-price {
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+    .detail-add {
+      width: 100%;
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      padding: 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.2s;
+    }
+    .detail-add:hover { background: var(--gold2); }
+
+    .detail-info {
+      margin-top: 28px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .detail-info-row {
+      display: flex; gap: 12px; align-items: flex-start;
+      font-size: 0.8rem; color: var(--muted);
+    }
+    .detail-info-row svg { flex-shrink: 0; margin-top: 1px; }
+
+    /* ── CART PANEL ── */
+    .cart-panel {
+      position: fixed;
+      top: 0; right: -480px;
+      width: min(480px, 100vw);
+      height: 100vh;
+      background: var(--off);
+      border-left: 1px solid var(--border);
+      z-index: 400;
+      transition: right 0.38s cubic-bezier(0.25,0.46,0.45,0.94);
+      display: flex; flex-direction: column;
+    }
+    .cart-panel.on { right: 0; }
+
+    .cart-head {
+      padding: 26px 30px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .cart-head h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem; font-weight: 400;
+    }
+    .close-x {
+      background: none; border: none;
+      color: var(--muted); font-size: 1.4rem;
+      cursor: pointer; line-height: 1;
+      transition: color 0.2s;
+    }
+    .close-x:hover { color: var(--white); }
+
+    .cart-items { flex: 1; overflow-y: auto; padding: 20px 30px; }
+    .cart-empty {
+      padding: 60px 0; text-align: center;
+      color: var(--muted); font-size: 0.88rem; font-weight: 300;
+    }
+
+    .citem {
+      display: flex; gap: 14px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+    }
+    .citem-thumb {
+      width: 68px; height: 68px;
+      border-radius: 4px;
+      object-fit: cover;
+      background: var(--mid);
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); font-size: 1.5rem;
+    }
+    .citem-info { flex: 1; min-width: 0; }
+    .citem-name { font-size: 0.9rem; font-weight: 400; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .citem-price { font-size: 0.8rem; color: var(--gold); }
+    .citem-controls { display: flex; align-items: center; gap: 9px; margin-top: 9px; }
+    .qbtn {
+      width: 24px; height: 24px;
+      border: 1px solid var(--border);
+      background: none; color: var(--light);
+      border-radius: 3px; cursor: pointer; font-size: 0.9rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.15s;
+    }
+    .qbtn:hover { border-color: var(--gold); color: var(--gold); }
+    .qval { font-size: 0.85rem; min-width: 18px; text-align: center; }
+    .del-btn {
+      background: none; border: none;
+      color: var(--muted); cursor: pointer; font-size: 1.1rem;
+      margin-left: auto;
+      transition: color 0.2s;
+    }
+    .del-btn:hover { color: #e55; }
+
+    .cart-foot {
+      padding: 24px 30px;
+      border-top: 1px solid var(--border);
+    }
+    .cart-tot {
+      display: flex; justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .cart-tot-label { font-size: 0.85rem; color: var(--muted); }
+    .cart-tot-val { font-size: 1.2rem; font-weight: 500; color: var(--gold); }
+
+    .stripe-pay-btn {
+      width: 100%;
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      padding: 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.2s;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .stripe-pay-btn:hover { background: var(--gold2); }
+    .stripe-pay-btn svg { width: 18px; height: 18px; }
+
+    .secure-note {
+      margin-top: 12px;
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--muted);
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+
+    /* ── CHECKOUT MODAL ── */
+    .modal-bg {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 600;
+      backdrop-filter: blur(8px);
+      align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .modal-bg.on { display: flex; }
+
+    .modal-box {
+      background: var(--off);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 44px 40px;
+      width: 100%;
+      max-width: 480px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      animation: fadeUp 0.3s ease both;
+    }
+    .modal-box h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.7rem; font-weight: 400;
+      margin-bottom: 6px;
+    }
+    .modal-box .modal-sub {
+      font-size: 0.8rem; color: var(--muted);
+      margin-bottom: 32px; font-weight: 300;
+    }
+
+    .close-modal-btn {
+      position: absolute; top: 18px; right: 22px;
+      background: none; border: none;
+      color: var(--muted); font-size: 1.4rem;
+      cursor: pointer;
+    }
+    .close-modal-btn:hover { color: var(--white); }
+
+    .order-recap {
+      background: var(--mid);
+      border-radius: 5px;
+      padding: 16px 18px;
+      margin-bottom: 28px;
+      font-size: 0.83rem;
+    }
+    .recap-line {
+      display: flex; justify-content: space-between;
+      padding: 3px 0; color: var(--muted);
+    }
+    .recap-total {
+      display: flex; justify-content: space-between;
+      padding-top: 10px; margin-top: 8px;
+      border-top: 1px solid var(--border);
+      font-weight: 500; font-size: 1rem;
+      color: var(--white);
+    }
+
+    .field { margin-bottom: 16px; }
+    .field label {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 7px;
+    }
+    .field input {
+      width: 100%;
+      background: var(--mid);
+      border: 1px solid var(--border);
+      color: var(--white);
+      padding: 12px 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      border-radius: 4px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .field input:focus { border-color: var(--gold); }
+    .field input::placeholder { color: var(--muted); }
+    .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    .stripe-block {
+      background: var(--mid);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 16px;
+      margin-bottom: 22px;
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .stripe-block svg { flex-shrink: 0; margin-top: 2px; }
+    .stripe-block p {
+      font-size: 0.8rem; color: var(--muted); line-height: 1.55;
+      font-weight: 300;
+    }
+    .stripe-block strong { color: var(--light); font-weight: 400; }
+
+    .confirm-btn {
+      width: 100%;
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      padding: 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.2s;
+    }
+    .confirm-btn:hover { background: var(--gold2); }
+
+    /* ── SUCCESS ── */
+    .success-view {
+      display: none; text-align: center; padding: 10px 0;
+    }
+    .success-view.on { display: block; }
+    .success-icon {
+      width: 70px; height: 70px;
+      background: rgba(212,168,67,0.12);
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; margin: 0 auto 22px;
+    }
+    .success-view h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem; font-weight: 400;
+      margin-bottom: 10px;
+    }
+    .success-view p { color: var(--muted); font-size: 0.88rem; line-height: 1.6; }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 28px; left: 50%;
+      transform: translateX(-50%) translateY(60px);
+      background: var(--mid);
+      border: 1px solid var(--border);
+      color: var(--white);
+      padding: 11px 26px;
+      border-radius: 4px;
+      font-size: 0.83rem;
+      z-index: 999;
+      transition: transform 0.28s ease;
+      white-space: nowrap;
+    }
+    .toast.on { transform: translateX(-50%) translateY(0); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 34px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    footer p { font-size: 0.78rem; color: var(--muted); }
+    footer a { color: var(--gold); text-decoration: none; }
+    .stripe-logo {
+      font-size: 0.75rem; color: var(--muted);
+      display: flex; align-items: center; gap: 6px;
+    }
+
+    @media (max-width: 640px) {
+      header { padding: 0 20px; }
+      .hero { padding: 60px 20px 50px; }
+      .shop { padding: 50px 20px; }
+      footer { padding: 26px 20px; flex-direction: column; text-align: center; }
+      .modal-box { padding: 30px 22px; }
+      .detail-body { padding: 28px 24px; }
+      .cart-head, .cart-items, .cart-foot { padding-left: 22px; padding-right: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">Créations <em>Fondues</em></div>
+  <div class="header-right">
+    <button class="cart-trigger" onclick="openCart()">
+      <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+      Panier
+      <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-label">Artisanat &amp; Création</div>
+  <h1>Lampes &amp; Porte-clés<br/><em>faits à la main</em></h1>
+  <p>Chaque pièce est coulée et injectée dans des moules uniques — une fabrication artisanale pour un objet qui vous ressemble.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- SHOP -->
+<section class="shop">
+  <div class="shop-head">
+    <h2>La Boutique</h2>
+    <span id="productCount"></span>
+  </div>
+
+  <div class="filter-tabs">
+    <button class="filter-tab active" onclick="filterProducts('tous', this)">Tous</button>
+    <button class="filter-tab" onclick="filterProducts('lampe', this)">Lampes</button>
+    <button class="filter-tab" onclick="filterProducts('porte-cles', this)">Porte-clés</button>
+  </div>
+
+  <div class="grid" id="grid"></div>
+</section>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="closeAll()"></div>
+
+<!-- DETAIL PANEL -->
+<div class="detail-panel" id="detailPanel">
+  <button class="detail-close" onclick="closeDetail()">×</button>
+  <div class="detail-img" id="detailImg"></div>
+  <div class="detail-body">
+    <div class="detail-cat" id="detailCat"></div>
+    <div class="detail-name" id="detailName"></div>
+    <div class="detail-desc" id="detailDesc"></div>
+    <div class="detail-price" id="detailPrice"></div>
+    <button class="detail-add" id="detailAdd">Ajouter au panier</button>
+    <div class="detail-info">
+      <div class="detail-info-row">
+        <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" color="#d4a843"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+        Pièce artisanale fabriquée sur commande
+      </div>
+      <div class="detail-info-row">
+        <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" color="#d4a843"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        Livraison soignée sous 3–7 jours
+      </div>
+      <div class="detail-info-row">
+        <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" color="#d4a843"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Paiement 100% sécurisé par Stripe
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CART PANEL -->
+<div class="cart-panel" id="cartPanel">
+  <div class="cart-head">
+    <h2>Votre Panier</h2>
+    <button class="close-x" onclick="closeCart()">×</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty">Votre panier est vide</div>
+  </div>
+  <div class="cart-foot">
+    <div class="cart-tot">
+      <span class="cart-tot-label">Total commande</span>
+      <span class="cart-tot-val" id="cartTotal">0,00 €</span>
+    </div>
+    <button class="stripe-pay-btn" onclick="openCheckout()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+      </svg>
+      Payer par carte
+    </button>
+    <p class="secure-note">🔒 Paiement sécurisé · Stripe</p>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal-bg" id="checkoutModal">
+  <div class="modal-box">
+    <button class="close-modal-btn" onclick="closeCheckout()">×</button>
+
+    <div id="formView">
+      <h2>Commander</h2>
+      <p class="modal-sub">Remplissez vos informations pour finaliser l'achat</p>
+
+      <div class="order-recap" id="orderRecap"></div>
+
+      <div class="field">
+        <label>Prénom &amp; Nom *</label>
+        <input id="fName" type="text" placeholder="Jean Dupont"/>
+      </div>
+      <div class="field">
+        <label>Adresse email *</label>
+        <input id="fEmail" type="email" placeholder="jean@exemple.fr"/>
+      </div>
+      <div class="field">
+        <label>Adresse de livraison *</label>
+        <input id="fAddr" type="text" placeholder="12 rue des Artisans"/>
+      </div>
+      <div class="row-2">
+        <div class="field">
+          <label>Code postal *</label>
+          <input id="fZip" type="text" placeholder="75000"/>
+        </div>
+        <div class="field">
+          <label>Ville *</label>
+          <input id="fCity" type="text" placeholder="Paris"/>
+        </div>
+      </div>
+
+      <div class="stripe-block">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#d4a843" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <p>
+          <strong>Paiement sécurisé via Stripe</strong><br/>
+          Après confirmation, vous serez redirigé vers la page de paiement Stripe pour saisir vos informations bancaires en toute sécurité.
+        </p>
+      </div>
+
+      <button class="confirm-btn" onclick="submitOrder()">Confirmer &amp; Payer →</button>
+    </div>
+
+    <div class="success-view" id="successView">
+      <div class="success-icon">✓</div>
+      <h3>Merci pour votre commande !</h3>
+      <p>Votre paiement a été confirmé. Vous recevrez un email de confirmation avec le suivi de votre livraison.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Créations Fondues · Artisanat français · <a href="#">Mentions légales</a> · <a href="#">CGV</a></p>
+  <div class="stripe-logo">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6b6b6b" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+    Paiement sécurisé par Stripe
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════
+   ▶ CONFIGURATION — MODIFIEZ ICI
+═══════════════════════════════════════ */
+
+// Votre clé publique Stripe (trouvable sur dashboard.stripe.com)
+const STRIPE_PUBLIC_KEY = "pk_live_REMPLACEZ_PAR_VOTRE_CLE";
+
+// ─── VOS PRODUITS ───────────────────────
+// Ajoutez, modifiez ou supprimez des produits ici.
+// Pour les photos : uploadez votre image quelque part (ex: GitHub, ImgBB)
+// et mettez l'URL dans "img". Laissez null pour afficher un placeholder.
+const products = [
+  {
+    id: 1,
+    cat: "lampe",
+    catLabel: "Lampe",
+    name: "Lampe Résine Ambrée",
+    desc: "Lampe artisanale coulée en résine époxy ambrée. Chaque pièce est unique grâce au procédé d'injection dans moule. Câble tressé inclus, ampoule E27 compatible.",
+    price: 49.90,
+    img: null // ex: "https://votre-lien.com/lampe1.jpg"
+  },
+  {
+    id: 2,
+    cat: "lampe",
+    catLabel: "Lampe",
+    name: "Lampe Béton Graphite",
+    desc: "Socle en béton moulé à la main, finition graphite mat. Design industriel et moderne. Hauteur 22 cm. Livré avec douille et câble tissu noir.",
+    price: 64.00,
+    img: null
+  },
+  {
+    id: 3,
+    cat: "porte-cles",
+    catLabel: "Porte-clés",
+    name: "Porte-clés Géométrique",
+    desc: "Porte-clés en résine injectée dans un moule géométrique hexagonal. Finition brillante. Dimensions : 4 × 4 cm. Anneau métal inoxydable.",
+    price: 12.50,
+    img: null
+  },
+  {
+    id: 4,
+    cat: "porte-cles",
+    catLabel: "Porte-clés",
+    name: "Porte-clés Fleur Naturelle",
+    desc: "Vraie fleur séchée injectée dans résine transparente. Chaque porte-clés est unique. Taille environ 5 cm. Anneau doré.",
+    price: 14.90,
+    img: null
+  }
+];
+
+/* ═══════════════════════════════════════
+   ▶ LOGIQUE BOUTIQUE
+═══════════════════════════════════════ */
+
+let cart = [];
+let currentFilter = 'tous';
+let currentProductId = null;
+
+// ── RENDER ──
+function renderGrid(filter) {
+  const filtered = filter === 'tous' ? products : products.filter(p => p.cat === filter);
+  document.getElementById('productCount').textContent = filtered.length + ' article' + (filtered.length > 1 ? 's' : '');
+  document.getElementById('grid').innerHTML = filtered.map((p, i) => `
+    <div class="card" onclick="openDetail(${p.id})">
+      <div class="card-img">
+        ${p.img
+          ? `<img src="${p.img}" alt="${p.name}"/>`
+          : `<div class="card-img-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                <path d="M21 15l-5-5L5 21"/>
+              </svg>
+              <span>Photo à venir</span>
+            </div>`
+        }
+        <span class="card-tag">${p.catLabel}</span>
+      </div>
+      <div class="card-body">
+        <div class="card-name">${p.name}</div>
+        <div class="card-desc">${p.desc}</div>
+        <div class="card-foot">
+          <div class="card-price">${p.price.toFixed(2).replace('.', ',')} €</div>
+          <button class="card-add" onclick="event.stopPropagation(); addToCart(${p.id})">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Ajouter
+          </button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterProducts(cat, btn) {
+  currentFilter = cat;
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  renderGrid(cat);
+}
+
+// ── DETAIL PANEL ──
+function openDetail(id) {
+  const p = products.find(x => x.id === id);
+  currentProductId = id;
+  document.getElementById('detailCat').textContent = p.catLabel;
+  document.getElementById('detailName').textContent = p.name;
+  document.getElementById('detailDesc').textContent = p.desc;
+  document.getElementById('detailPrice').textContent = p.price.toFixed(2).replace('.', ',') + ' €';
+  const imgEl = document.getElementById('detailImg');
+  imgEl.innerHTML = p.img
+    ? `<img src="${p.img}" alt="${p.name}"/>`
+    : `<div class="detail-img-ph"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#3a3a3a" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Photo produit</span></div>`;
+  document.getElementById('detailAdd').onclick = () => { addToCart(id); closeDetail(); };
+  document.getElementById('detailPanel').classList.add('on');
+  document.getElementById('overlay').classList.add('on');
+}
+
+function closeDetail() {
+  document.getElementById('detailPanel').classList.remove('on');
+  document.getElementById('overlay').classList.remove('on');
+}
+
+// ── CART ──
+function addToCart(id) {
+  const p = products.find(x => x.id === id);
+  const ex = cart.find(c => c.id === id);
+  if (ex) ex.qty++;
+  else cart.push({ ...p, qty: 1 });
+  updateCart();
+  toast(`"${p.name}" ajouté ✓`);
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(c => c.id !== id);
+  updateCart();
+}
+
+function changeQty(id, delta) {
+  const item = cart.find(c => c.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) removeFromCart(id);
+  else updateCart();
+}
+
+function updateCart() {
+  const count = cart.reduce((s, c) => s + c.qty, 0);
+  const total = cart.reduce((s, c) => s + c.price * c.qty, 0);
+
+  const badge = document.getElementById('cartBadge');
+  badge.textContent = count;
+  badge.classList.toggle('on', count > 0);
+  document.getElementById('cartTotal').textContent = total.toFixed(2).replace('.', ',') + ' €';
+
+  const el = document.getElementById('cartItems');
+  if (!cart.length) { el.innerHTML = '<div class="cart-empty">Votre panier est vide</div>'; return; }
+
+  el.innerHTML = cart.map(c => `
+    <div class="citem">
+      <div class="citem-thumb">
+        ${c.img ? `<img src="${c.img}" alt="${c.name}" style="width:100%;height:100%;border-radius:4px;object-fit:cover;"/>` : '📦'}
+      </div>
+      <div class="citem-info">
+        <div class="citem-name">${c.name}</div>
+        <div class="citem-price">${c.price.toFixed(2).replace('.', ',')} €</div>
+        <div class="citem-controls">
+          <button class="qbtn" onclick="changeQty(${c.id}, -1)">−</button>
+          <span class="qval">${c.qty}</span>
+          <button class="qbtn" onclick="changeQty(${c.id}, 1)">+</button>
+        </div>
+      </div>
+      <button class="del-btn" onclick="removeFromCart(${c.id})">×</button>
+    </div>
+  `).join('');
+}
+
+function openCart() {
+  closeDetail();
+  document.getElementById('cartPanel').classList.add('on');
+  document.getElementById('overlay').classList.add('on');
+}
+function closeCart() {
+  document.getElementById('cartPanel').classList.remove('on');
+  document.getElementById('overlay').classList.remove('on');
+}
+function closeAll() {
+  closeDetail();
+  closeCart();
+}
+
+// ── CHECKOUT ──
+function openCheckout() {
+  if (!cart.length) { toast('Votre panier est vide'); return; }
+  closeCart();
+  const total = cart.reduce((s, c) => s + c.price * c.qty, 0);
+  document.getElementById('orderRecap').innerHTML =
+    cart.map(c => `<div class="recap-line"><span>${c.name} × ${c.qty}</span><span>${(c.price*c.qty).toFixed(2).replace('.', ',')} €</span></div>`).join('') +
+    `<div class="recap-total"><span>Total</span><span>${total.toFixed(2).replace('.', ',')} €</span></div>`;
+  document.getElementById('formView').style.display = '';
+  document.getElementById('successView').classList.remove('on');
+  document.getElementById('checkoutModal').classList.add('on');
+}
+function closeCheckout() { document.getElementById('checkoutModal').classList.remove('on'); }
+
+function submitOrder() {
+  const name  = document.getElementById('fName').value.trim();
+  const email = document.getElementById('fEmail').value.trim();
+  const addr  = document.getElementById('fAddr').value.trim();
+  const zip   = document.getElementById('fZip').value.trim();
+  const city  = document.getElementById('fCity').value.trim();
+  if (!name || !email || !addr || !zip || !city) {
+    toast('Veuillez remplir tous les champs'); return;
+  }
+
+  /* ──────────────────────────────────────────────────
+     INTÉGRATION STRIPE
+     Une fois votre backend créé, décommentez ce code :
+
+  const stripe = Stripe(STRIPE_PUBLIC_KEY);
+  const total = cart.reduce((s, c) => s + c.price * c.qty, 0);
+
+  fetch('/api/create-checkout-session', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      cart: cart.map(c => ({ name: c.name, price: c.price, qty: c.qty })),
+      customer: { name, email, address: addr + ', ' + zip + ' ' + city }
+    })
+  })
+  .then(r => r.json())
+  .then(data => stripe.redirectToCheckout({ sessionId: data.id }))
+  .catch(err => toast('Erreur paiement : ' + err.message));
+
+     Et supprimez la simulation ci-dessous.
+  ────────────────────────────────────────────────── */
+
+  // SIMULATION (à remplacer par Stripe réel)
+  document.getElementById('formView').style.display = 'none';
+  document.getElementById('successView').classList.add('on');
+  cart = [];
+  updateCart();
+}
+
+// ── TOAST ──
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('on');
+  setTimeout(() => el.classList.remove('on'), 2600);
+}
+
+// ── INIT ──
+renderGrid('tous');
+</script>
+</body>
+</html>
